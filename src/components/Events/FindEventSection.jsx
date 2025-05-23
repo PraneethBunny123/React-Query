@@ -6,7 +6,7 @@ import ErrorBlock from '../UI/ErrorBlock';
 import EventItem from './EventItem';
 
 export default function FindEventSection() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState()
   const searchElement = useRef();
 
   const {data, isLoading, isError, error} = useQuery({
