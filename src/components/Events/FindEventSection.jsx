@@ -54,6 +54,7 @@ export default function FindEventSection() {
           <button>Search</button>
         </form>
       </header>
+      {content}
     </section>
   );
 }
