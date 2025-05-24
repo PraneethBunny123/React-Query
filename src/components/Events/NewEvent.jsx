@@ -32,7 +32,7 @@ export default function NewEvent() {
           </>
         )}
       </EventForm>
-      {isError && <ErrorBlock title="Unable to create a event" message={error.info?.message || 'Failed to create a new event. Please check the input fields'} />}
+      {isError && <ErrorBlock title="Failed to create a event" message={error.info?.message || 'Failed to create a new event. Please check the input fields'} />}
     </Modal>
   );
 }
