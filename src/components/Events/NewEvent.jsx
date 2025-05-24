@@ -2,9 +2,15 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
+import { createNewEvent } from '../../util/http.js';
+import { useMutation } from '@tanstack/react-query';
 
 export default function NewEvent() {
   const navigate = useNavigate();
+
+  useMutation({
+    mutationFn: createNewEvent
+  })
 
   function handleSubmit(formData) {}
 
