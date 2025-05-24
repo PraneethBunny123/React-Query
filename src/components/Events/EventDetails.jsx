@@ -3,6 +3,7 @@ import { Link, Outlet, useParams } from 'react-router-dom';
 import Header from '../Header.jsx';
 import { useQuery } from '@tanstack/react-query';
 import { fetchEvent } from '../../util/http.js';
+import ErrorBlock from '../UI/ErrorBlock.jsx';
 
 export default function EventDetails() {
 
@@ -19,6 +20,14 @@ export default function EventDetails() {
     content = (
       <div id='event-details-content' className='center'>
         <p>Fetching event data...</p>
+      </div>
+    )
+  }
+
+  if(isError) {
+    content = (
+      <div id='event-details-content' className='center'>
+        <ErrorBlock title='Failed to load event' message={error.info?.message || 'Failed to fetch event data, PLease try again later.'}/>
       </div>
     )
   }
