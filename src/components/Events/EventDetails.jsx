@@ -23,7 +23,7 @@ export default function EventDetails() {
     }
   })
 
-  function handleDelete(id) {
+  function handleDelete() {
     mutate({id})
   }
 
@@ -57,7 +57,7 @@ export default function EventDetails() {
         <header>
           <h1>{data.title}</h1>
           <nav>
-            <button onClick={() => handleDelete(id)}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
             <Link to="edit">Edit</Link>
           </nav>
         </header>
