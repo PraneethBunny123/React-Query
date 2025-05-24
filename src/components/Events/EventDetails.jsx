@@ -1,5 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 
 import Header from '../Header.jsx';
 import { useQuery } from '@tanstack/react-query';
@@ -7,8 +6,10 @@ import { fetchEvent } from '../../util/http.js';
 
 export default function EventDetails() {
 
-  useQuery({
-    queryKey: ['event'],
+  let {id} = useParams()
+
+  const {data, isPending, isError, error} = useQuery({
+    queryKey: ['event', {id: id}],
     queryFn: ({signal}) => fetchEvent({id, signal})
   })
 
