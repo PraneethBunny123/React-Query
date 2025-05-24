@@ -33,6 +33,12 @@ export default function EventDetails() {
   }
 
   if(data) {
+    const formattedDate = new Date(data.date).toLocaleDateString('en-us', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    })
+
     content = (
       <>
         <header>
@@ -47,7 +53,7 @@ export default function EventDetails() {
           <div id="event-details-info">
             <div>
               <p id="event-details-location">{data.location}</p>
-              <time dateTime={`Todo-DateT$Todo-Time`}>{data.date} @ {data.time}</time>
+              <time dateTime={`Todo-DateT$Todo-Time`}>{formattedDate} @ {data.time}</time>
             </div>
             <p id="event-details-description">{data.description}</p>
           </div>
@@ -64,9 +70,7 @@ export default function EventDetails() {
           View all Events
         </Link>
       </Header>
-      <article id="event-details">
-        {content}
-      </article>
+      <article id="event-details">{content}</article>
     </>
   );
 }
