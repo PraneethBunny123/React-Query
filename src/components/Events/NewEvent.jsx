@@ -8,11 +8,13 @@ import { useMutation } from '@tanstack/react-query';
 export default function NewEvent() {
   const navigate = useNavigate();
 
-  useMutation({
+  const {mutate} = useMutation({
     mutationFn: createNewEvent
   })
 
-  function handleSubmit(formData) {}
+  function handleSubmit(formData) {
+    mutate({event: formData})
+  }
 
   return (
     <Modal onClose={() => navigate('../')}>
