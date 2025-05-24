@@ -4,11 +4,12 @@ import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
 import { createNewEvent } from '../../util/http.js';
 import { useMutation } from '@tanstack/react-query';
+import ErrorBlock from '../UI/ErrorBlock.jsx';
 
 export default function NewEvent() {
   const navigate = useNavigate();
 
-  const {mutate} = useMutation({
+  const {mutate, isPending, isError, error} = useMutation({
     mutationFn: createNewEvent
   })
 
@@ -19,15 +20,19 @@ export default function NewEvent() {
   return (
     <Modal onClose={() => navigate('../')}>
       <EventForm onSubmit={handleSubmit}>
-        <>
-          <Link to="../" className="button-text">
-            Cancel
-          </Link>
-          <button type="submit" className="button">
-            Create
-          </button>
-        </>
+        {isPending && 'Submitting...'}
+        {!isPending && (
+          <>
+            <Link to="../" className="button-text">
+              Cancel
+            </Link>
+            <button type="submit" className="button">
+              Create
+            </button>
+          </>
+        )}
       </EventForm>
+      {isError && <ErrorBlock title="Unable to create a event" message={error.info?.message || 'Failed to create a new event. Please check the input fields'} />}
     </Modal>
   );
 }
