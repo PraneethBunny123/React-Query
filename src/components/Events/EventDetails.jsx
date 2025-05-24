@@ -13,6 +13,16 @@ export default function EventDetails() {
     queryFn: ({signal}) => fetchEvent({id, signal})
   })
 
+  let content;
+
+  if(isPending) {
+    content = (
+      <div id='event-details-content' className='center'>
+        <p>Fetching event data...</p>
+      </div>
+    )
+  }
+
   return (
     <>
       <Outlet />
