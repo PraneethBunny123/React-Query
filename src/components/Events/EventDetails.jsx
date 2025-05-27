@@ -91,11 +91,11 @@ export default function EventDetails() {
 
   return (
     <>
-      <Modal>
+      <Modal onClose={handleStopDelete}>
         <h2>Are you sure?</h2>
         <p>Do you really want to delete this event? This action cannot be undone.</p>
         <div>
-          <button>Cancel</button>
+          <button onClick={handleStopDelete}>Cancel</button>
           <button onClick={handleDelete}>Delete</button>
         </div>
       </Modal>
