@@ -94,9 +94,19 @@ export default function EventDetails() {
       <Modal onClose={handleStopDelete}>
         <h2>Are you sure?</h2>
         <p>Do you really want to delete this event? This action cannot be undone.</p>
-        <div>
-          <button onClick={handleStopDelete}>Cancel</button>
-          <button onClick={handleDelete}>Delete</button>
+        <div className='form-actions'>
+          <button 
+            onClick={handleStopDelete} 
+            className='button-text'
+          >
+            Cancel
+          </button>
+          <button 
+            onClick={handleDelete}
+            className='button'
+          >
+            Delete
+          </button>
         </div>
       </Modal>
       <Outlet />
