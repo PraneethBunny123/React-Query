@@ -4,6 +4,8 @@ import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
 import { useQuery } from '@tanstack/react-query';
 import { fetchEvent } from '../../util/http.js';
+import LoadingIndicator from '../UI/LoadingIndicator.jsx'
+import ErrorBlock from '../UI/ErrorBlock.jsx';
 
 export default function EditEvent() {
   const navigate = useNavigate();
@@ -19,6 +21,29 @@ export default function EditEvent() {
 
   function handleClose() {
     navigate('../');
+  }
+
+  let content;
+
+  if(isPending) {
+    content = (
+      <div className='center'>
+        <LoadingIndicator />
+      </div>
+    )
+  }
+
+  if(isError) {
+    content = (
+      <>
+        <ErrorBlock title='Failed to load event' message={error.info?.message || 'Failed to load event'}/>
+        <div className="form-actions">
+          <Link to='../' className='button'>
+            OKay
+          </Link>
+        </div>
+      </>
+    )
   }
 
   return (
