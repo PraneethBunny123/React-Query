@@ -4,8 +4,10 @@ import Header from '../Header.jsx';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { deleteEvent, fetchEvent, queryClient } from '../../util/http.js';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
+import { useState } from 'react';
 
 export default function EventDetails() {
+  const [isDeleting, setIsDeleting] = useState(false)
 
   let {id} = useParams()
   const navigate = useNavigate()
@@ -25,6 +27,14 @@ export default function EventDetails() {
       navigate('/events')
     }
   })
+
+  function handleStartDelete() {
+    setIsDeleting(true)
+  }
+
+  function handleStopDelete() {
+    setIsDeleting(false)
+  }
 
   function handleDelete() {
     mutate({id})
@@ -60,7 +70,7 @@ export default function EventDetails() {
         <header>
           <h1>{data.title}</h1>
           <nav>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleStartDelete}>Delete</button>
             <Link to="edit">Edit</Link>
           </nav>
         </header>
