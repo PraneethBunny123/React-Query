@@ -18,7 +18,12 @@ export default function EventDetails() {
     queryFn: ({signal}) => fetchEvent({id, signal})
   })
 
-  const {mutate} = useMutation({
+  const {
+    mutate, 
+    isPending: isPendingDeletion, 
+    isError: isErrorDeleting, 
+    error: deleteError
+  } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
       queryClient.invalidateQueries({
