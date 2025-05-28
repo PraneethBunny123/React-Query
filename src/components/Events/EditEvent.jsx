@@ -30,7 +30,7 @@ export default function EditEvent() {
       return {previousEvent}
     },
     onError: (error, data, context) => {
-
+      queryClient.setQueriesData(['events', id], context.previousEvent)
     }
   })
 
