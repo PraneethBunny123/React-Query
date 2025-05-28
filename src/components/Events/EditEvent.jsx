@@ -31,6 +31,9 @@ export default function EditEvent() {
     },
     onError: (error, data, context) => {
       queryClient.setQueriesData(['events', id], context.previousEvent)
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(['events', id])
     }
   })
 
