@@ -19,13 +19,13 @@ export default function EditEvent() {
 
   const {mutate} = useMutation({
     mutationFn: updateEvent,
-    onMutate: () => {
-      queryClient
+    onMutate: (data) => {
+      queryClient.setQueriesData(['events', id])
     }
   })
 
   function handleSubmit(formData) {
-    mutate({id, formData})
+    mutate({id, event: formData})
     navigate('../')
   }
 
