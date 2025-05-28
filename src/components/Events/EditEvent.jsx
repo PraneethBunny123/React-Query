@@ -20,6 +20,7 @@ export default function EditEvent() {
   const {mutate} = useMutation({
     mutationFn: updateEvent,
     onMutate: (data) => {
+      const newEvent = data.event
       queryClient.setQueriesData(['events', id])
     }
   })
